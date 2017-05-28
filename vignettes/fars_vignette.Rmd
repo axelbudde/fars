@@ -1,0 +1,66 @@
+---
+title: "FARS Vignette"
+author: "Axel Budde"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE, include = FALSE}
+library(fars)
+library(dplyr)
+library(maps)
+```
+
+## Purpose
+This vignette provides an introduction to the fars package of functions for the analysis of data from the Fatality Analysis Reporting System (FARS).
+
+## Installation
+To install the fars package from GitHub:
+
+```{r, eval = FALSE}
+install.packages("devtools")
+devtools::install_github("axelbudde/fars")
+```
+
+## Functions
+
+The fars package offers three functions:
+
+- `fars_read()`
+- `fars_summarize_years()`
+- `fars_map_state()`
+
+## Examples
+
+Examples are provided for each function, using FARS data from the years 2013 to 2015. The corresponding data files can be found in the `\extdata` folder.
+
+## Reading FARS data
+
+With `fars_read()` a file path can be defined. The function read the corresponding data file and returns a tibble.
+
+```{r fars_read_example}
+filename <- system.file("extdata/accident_2014.csv.bz2", package = "fars")
+fars_read(filename)
+```
+
+## Summarizing data
+
+With `fars_summarize_years()`summarizes the number of accidents by year and month by means of a pivot table. The function accepts a year or a range of years as arguments (integer).
+
+```{r fars_summarize_years_example}
+setwd(system.file("extdata", package = "fars"))
+fars_summarize_years(2013:2015)
+```
+
+## Plotting accident locations
+
+The function `fars_map_state()` plots accident locations in a certain state and year, using state index and year as arguments.
+
+```{r fars_map_state_example}
+setwd(system.file("extdata", package = "fars"))
+fars_map_state(33, 2015)
+```

@@ -1,0 +1,19 @@
+Package: fars
+Type: Package
+Title: Analysis of FARS Data
+Version: 0.1.0
+Author: Axel Budde
+Maintainer: Axel Budde <axel.budde@posteo.de>
+Description: Functions for analysis of FARS data (dev/).
+License: GPL
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr,
+    maps,
+    readr,
+    tidyr
+Suggests: testthat,
+    knitr,
+    rmarkdown
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
