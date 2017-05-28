@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Loads as argument a CSV file \code{filename} and returns
-#' a tibble. In case of incorrect path definition provides an error message and ends.
+#' a tibble. provides an error message and ends in case of incorrect path definition.
 #'
 #' @param filename Path to the CSV file (character)
 #'
@@ -31,7 +31,7 @@ fars_read <- function(filename) {
 #' @description
 #' Creates a filename for a .csv.bz2 file for the \code{year}
 #' argument with the structue "accident_<year>.csv.bz2". Requires an
-#' integer as input and ends with an error message, otherwise.
+#' integer as input or ends with an error message, otherwise.
 #'
 #' @param year Integer: year of observation.
 #'
@@ -51,13 +51,13 @@ make_filename <- function(year) {
 #'
 #' @description
 #' Accepts a vector or list of years and returns a list of data
-#' frames with MONTH and year columns of "accident_<year>.csv.bz2
+#' frames with month and year columns of "accident_<year>.csv.bz2
 #' files.
 #'
 #' @param years A vector or list of years in integer format.
 #'
 #' @return Returns a list of tibbles (data frames) with the same number of rows
-#' as the data in "accident_<year>.csv.bz2" files and two columns - MONTH and
+#' as the data in "accident_<year>.csv.bz2" files and two columns: month and
 #' year. Returns NULL and a warning if the file does not exist.
 #'
 #' @examples
@@ -90,13 +90,13 @@ fars_read_years <- function(years) {
 #' Calculates the number of accidents based on the list of years by months.
 #' Accepts years as a list or a vector.
 #'
-#' @param years Looks for a vector or list of years (numeric or integer) in the data
-#' files.
+#' @param years Looks for a vector or list of years (numeric or integer) in the data.
+#'
 #'
 #' @return Returns a pivot tibble (data frame) with months in rows and selected
-#' years in columns containing the number of accidents. Returns a warning for
-#' every input year that does not exist in the datasets. Returns an error medssage if
-#' non-numeric or non-integer input is presented.
+#' years in columns, containing the number of accidents. Returns a warning for
+#' every year that does not exist in the datasets. Returns an error message in case of
+#' non-numeric or non-integer input.
 #'
 #' @examples
 #' \dontrun{
@@ -117,16 +117,16 @@ fars_summarize_years <- function(years) {
 
 #' Plots accidents on a US state map
 #'
-#' Accepts a state number and year and plots accidents on a map.
-#' The state number should be integer or numerical. Returns error message and terminates
-#' if no match in in the FARS data if no corresponding data file is found.
+#' Accepts a state index and year as input (integer or numerical). Plots accidents on a map.
+#' Returns error message and terminates if no match in the FARS data or no corresponding data file is found.
 #'
-#' @param state.num The number of a state (numeric or integer) in the US used in the FARS data
-#' sets.
-#' @param year The year of analysis (numeric or integer)
+#'
+#' @param state.num The FARS state index (numeric or integer)
+#'
+#' @param year The year (numeric or integer)
 #'
 #' @return Returns a plot of the accidents of \code{state.num} and
-#' \code{year}. Returns an error message if the no match for state or year is found in the data.
+#' \code{year}. Returns an error message if no match for state or year is found in the data.
 #'
 #' @examples
 #' \dontrun{
